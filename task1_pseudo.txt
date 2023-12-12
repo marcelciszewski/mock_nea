@@ -1,0 +1,2281 @@
+# /////////////////////////////////////////////////////////
+
+
+
+# Name: Marcel Ciszewski
+
+# Class: 10Y-CS
+
+# Task: NEA_MOCK_ASSESSMENT_TASK_1
+
+
+
+# /////////////////////////////////////////////////////////
+
+IMPORT os
+
+IMPORT time
+
+IMPORT sys
+
+from os IMPORT system, name
+
+from time IMPORT sleep
+
+IMPORT subprocess
+
+IMPORT sys
+
+IMPORT pip
+
+IMPORT platform
+
+from datetime IMPORT datetime
+
+IMPORT socket
+
+IMPORT uuid
+
+IMPORT re
+
+# /////////////////////////////////////////////////////////
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", '--upgrade', 'pip'])
+
+
+
+TRY:
+
+    IMPORT readchar
+
+except ImportError:
+
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'readchar'])
+
+finally:
+
+    IMPORT readchar
+
+from readchar IMPORT readkey, key
+
+
+
+TRY:
+
+    IMPORT psutil
+
+except ImportError:
+
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'psutil'])
+
+finally:
+
+    IMPORT psutil
+
+
+
+TRY:
+
+    IMPORT py_cpuinfo
+
+except ImportError:
+
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 'py_cpuinfo'])
+
+finally:
+
+    IMPORT cpuinfo
+
+
+
+# define what system info is
+
+
+
+DEFINE FUNCTION System_information():
+
+    OUTPUT("="*40, "Your System Information", "="*40)
+
+    SET uname TO platform.uname()
+
+    OUTPUT(f"System OS: {uname.system}")
+
+    OUTPUT(f"Release: {uname.release}")
+
+    OUTPUT(f"Version: {uname.version}")
+
+    OUTPUT(f"Machine: {uname.machine}")
+
+    OUTPUT(f"Processor: {cpuinfo.get_cpu_info()['brand_raw']}")
+
+    OUTPUT(f"IP-Address: {socket.gethostbyname(socket.gethostname())}")
+
+    OUTPUT(f"MAC-Address: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}")
+
+    OUTPUT("="*100)
+
+
+
+
+
+# /////////////////////////////////////////////////////////
+
+# experiment and check IF readkey is present and installed using the above subprocess
+
+OUTPUT(" ")
+
+OUTPUT("Press Enter to continue.")
+
+WHILE True:
+
+    SET k TO readkey()
+
+    IF k EQUALS key.ENTER:
+
+        break
+
+    ELSE:
+
+        exit()
+
+# ========================================================
+
+# define what clear is and base it on the os you are using
+
+DEFINE FUNCTION clear():
+
+ 
+
+    IF name EQUALS 'nt':
+
+        SET _ TO system('cls')
+
+ 
+
+    ELSE:
+
+        SET _ TO system('clear')
+
+# ========================================================
+
+clear()
+
+SET accept1 TO False
+
+SET device TO False
+
+SET correction TO False
+
+OUTPUT("Please do not run this through IDLE as it won't be the best experience.")
+
+# ========================================================
+
+# greetings and simple response to get name and explain purpose.
+
+OUTPUT("Welcome to this automated response prompt!")
+
+OUTPUT("Using a series of question, we'll attempt to resolve your current situation and problem.")
+
+OUTPUT("Please key IN your name to proceed.")
+
+SET name1 TO INPUT()
+
+time.sleep(3)
+
+clear()
+
+# ========================================================
+
+# giant WHILE loop to allow the user IF there was a mistype
+
+OUTPUT("Welcome" ,name1)
+
+WHILE True:
+
+    WHILE correction EQUALS False:
+
+        System_information()
+
+        OUTPUT(" ")
+
+        OUTPUT("//////////////////////////////////////////////////////////////////////////////////")
+
+        OUTPUT("For COMPUTERS, IF this is the device you are currently experiencing on,")
+
+        OUTPUT("Use the above system information to help you. If not, ignore, and select an option")
+
+        OUTPUT("that you have.")
+
+        OUTPUT("//////////////////////////////////////////////////////////////////////////////////")
+
+        OUTPUT("For CONSOLES, choose the one that you have.")
+
+        OUTPUT("//////////////////////////////////////////////////////////////////////////////////")
+
+        time.sleep(15)
+
+        clear()
+
+        OUTPUT("===============================")
+
+        OUTPUT("1 FOR Phone (Mobile Devices)")
+
+        OUTPUT("2 FOR Computers")
+
+        OUTPUT("3 FOR Consoles")
+
+        OUTPUT("==============================")
+
+        SET accept1 TO False
+
+        SET num TO None
+
+        WHILE accept1 EQUALS False:
+
+            TRY:
+
+                OUTPUT("Using the above, press the number you would like to resolve: ")
+
+                SET num TO int(readkey())
+
+                SET accept1 TO True
+
+            except ValueError:
+
+                OUTPUT("Invalid INPUT. Enter a number.")
+
+        SET num TO str(num)
+
+        IF num EQUALS "1":
+
+            OUTPUT("You have an issue with your mobile device. Is this correct?")
+
+            SET option1 TO INPUT()
+
+            IF option1 EQUALS "yes" or option1 EQUALS "Yes":
+
+                OUTPUT("Great. I'll pull up the troubleshooting questions now.")
+
+                SET correction TO True
+
+                SET eg TO 1
+
+            ELSE:
+
+                OUTPUT("")
+
+                clear()
+
+        IF num EQUALS "2":
+
+            OUTPUT("You have an issue with your computer. Is this correct?")
+
+            SET option1 TO INPUT()
+
+            IF option1 EQUALS 'yes' or option1 EQUALS 'Yes':
+
+                OUTPUT("Great. I'll pull up the troubleshooting questions now.")
+
+                SET correction TO True
+
+                SET eg TO 2
+
+            ELSE:
+
+                OUTPUT("")
+
+                clear()
+
+        IF num EQUALS "3":
+
+            OUTPUT("You have an issue with your console. Is this correct?")
+
+            SET option1 TO INPUT()
+
+            IF option1 EQUALS 'yes' or option1 EQUALS 'Yes':
+
+                OUTPUT("Great. I'll pull up the troubleshooting questions now.")
+
+                SET correction TO True
+
+                SET eg TO 3 
+
+            ELSE:
+
+                OUTPUT("")
+
+                clear()
+
+        ELSE:
+
+            OUTPUT("Try again.")
+
+            clear()
+
+    break
+
+# ========================================================
+
+SET # phone problems hence eg TO 1, also WHILE looped IF there is a mistake, based on previous code.
+
+SET num TO None
+
+SET resolved TO False
+
+IF eg EQUALS 1:
+
+    WHILE resolved EQUALS False:
+
+        clear()
+
+        OUTPUT("Here are fourteen very common problems with mobile devices. Type the number")
+
+        OUTPUT("of the problem you are currently experiencing.")
+
+        OUTPUT("==========================================================================")
+
+        OUTPUT(" #1 - Your phone is quite slow to open apps.")
+
+        OUTPUT(" #2 - Your phone is experiencing bad battery life.")
+
+        OUTPUT(" #3 - Your phone is overheating rapidly.")
+
+        OUTPUT(" #4 - Your phone cannot store anymore apps / photos.")
+
+        OUTPUT(" #5 - Your phone's apps freeze randomly and/or stop working completely.")
+
+        OUTPUT(" #6 - Your phone freezes (even on the home screen) or crashes.")
+
+        OUTPUT(" #7 - Your phone's app store is not downloading apps at all.")
+
+        OUTPUT(" #8 - Your phone's MicroSD card is not showing up / not storing anything.")
+
+        OUTPUT(" #9 - Your phone has gotten wet (in any degree).")
+
+        OUTPUT(" #a - Your phone has a damaged charging port.")
+
+        OUTPUT(" #b - Your phone's connected accounts cannot synchronise.")
+
+        OUTPUT(" #c - Your phone's screen is not bright enough.")
+
+        OUTPUT(" #d - Your phone cannot connect to the app store.")
+
+        OUTPUT(" #e - Your phone cannot connect to WiFi (intermittent or not showing up).")
+
+        OUTPUT("==========================================================================")
+
+        OUTPUT("Enter the number.")
+
+        SET num TO None
+
+        SET accept1 TO False
+
+        SET accept2 TO False
+
+        WHILE accept1 EQUALS False:
+
+            TRY:
+
+                OUTPUT("Using the above, press the number or letter you would'd like to resolve: ")
+
+                SET num TO readkey()
+
+                SET accept1 TO True
+
+            except ValueError:
+
+                OUTPUT("Invalid INPUT. Enter a number.")
+
+        SET num TO str(num)
+
+        IF num EQUALS "1":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone is slow to opening apps, try closing previous apps or uninstalling unused ones to help.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "2":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("To improve bad battery life, adjust screen brightness, disable unnecessary background processes,")
+
+            OUTPUT("and close unused apps. Consider replacing the battery IF the issue persists.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "3":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone is overheating rapidly, try closing resource-intensive apps, keeping it IN a cool environment,")
+
+            OUTPUT("and removing any phone cases that may be trapping heat. If the problem persists, consult the manufacturer or a technician.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "4":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("When your phone cannot store more apps/photos, delete unnecessary files, transfer media to ")
+
+            OUTPUT("external storage, and consider upgrading to a device with larger internal storage.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "5":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("Address random app freezes by updating apps and your phone's software,")
+
+            OUTPUT("clearing app caches, and restarting your device regularly.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "6":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "6":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone freezes or crashes, troubleshoot by uninstalling problematic apps, ")
+
+            OUTPUT("updating software, and performing a factory reset as a last resort.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "7":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("When the app store won't download apps, check your internet connection,") 
+
+            OUTPUT("clear app store cache, and ensure there's sufficient storage space.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "9":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "8":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "9":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "a":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "b":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "c":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "d":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "e":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+# ===================================================================================================================================
+
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PHONES ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+# \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ COMPUTERS \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
+# ===================================================================================================================================
+
+IF eg EQUALS 2:
+
+    WHILE resolved EQUALS False:
+
+        clear()
+
+        OUTPUT("Here are fourteen very common problems with mobile devices. Type the number")
+
+        OUTPUT("of the problem you are currently experiencing.")
+
+        OUTPUT("==========================================================================")
+
+        OUTPUT(" #1 - Your phone is quite slow to open apps.")
+
+        OUTPUT(" #2 - Your phone is experiencing bad battery life.")
+
+        OUTPUT(" #3 - Your phone is overheating rapidly.")
+
+        OUTPUT(" #4 - Your phone cannot store anymore apps / photos.")
+
+        OUTPUT(" #5 - Your phone's apps freeze randomly and/or stop working completely.")
+
+        OUTPUT(" #6 - Your phone freezes (even on the home screen) or crashes.")
+
+        OUTPUT(" #7 - Your phone's app store is not downloading apps at all.")
+
+        OUTPUT(" #8 - Your phone's MicroSD card is not showing up / not storing anything.")
+
+        OUTPUT(" #9 - Your phone has gotten wet (in any degree).")
+
+        OUTPUT(" #a - Your phone has a damaged charging port.")
+
+        OUTPUT(" #b - Your phone's connected accounts cannot synchronise.")
+
+        OUTPUT(" #c - Your phone's screen is not bright enough.")
+
+        OUTPUT(" #d - Your phone cannot connect to the app store.")
+
+        OUTPUT(" #e - Your phone cannot connect to WiFi (intermittent or not showing up).")
+
+        OUTPUT("==========================================================================")
+
+        OUTPUT("Enter the number.")
+
+        SET num TO None
+
+        SET accept1 TO False
+
+        SET accept2 TO False
+
+        WHILE accept1 EQUALS False:
+
+            TRY:
+
+                OUTPUT("Using the above, press the number or letter you would'd like to resolve: ")
+
+                SET num TO readkey()
+
+                SET accept1 TO True
+
+            except ValueError:
+
+                OUTPUT("Invalid INPUT. Enter a number.")
+
+        SET num TO str(num)
+
+        IF num EQUALS "1":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone is slow to opening apps, try closing previous apps or uninstalling unused ones to help.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "2":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("To improve bad battery life, adjust screen brightness, disable unnecessary background processes,")
+
+            OUTPUT("and close unused apps. Consider replacing the battery IF the issue persists.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "3":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone is overheating rapidly, try closing resource-intensive apps, keeping it IN a cool environment,")
+
+            OUTPUT("and removing any phone cases that may be trapping heat. If the problem persists, consult the manufacturer or a technician.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "4":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("When your phone cannot store more apps/photos, delete unnecessary files, transfer media to ")
+
+            OUTPUT("external storage, and consider upgrading to a device with larger internal storage.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "5":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("Address random app freezes by updating apps and your phone's software,")
+
+            OUTPUT("clearing app caches, and restarting your device regularly.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "6":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "6":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone freezes or crashes, troubleshoot by uninstalling problematic apps, ")
+
+            OUTPUT("updating software, and performing a factory reset as a last resort.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "7":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("When the app store won't download apps, check your internet connection,") 
+
+            OUTPUT("clear app store cache, and ensure there's sufficient storage space.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "9":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "8":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "9":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "a":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "b":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "c":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "d":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "e":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+# ==============================================================================================================================================
+
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ COMPUTERS ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+# \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ CONSOLES \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
+# ==============================================================================================================================================
+
+IF eg EQUALS 3:
+
+    WHILE resolved EQUALS False:
+
+        clear()
+
+        OUTPUT("Here are fourteen very common problems with mobile devices. Type the number")
+
+        OUTPUT("of the problem you are currently experiencing.")
+
+        OUTPUT("==========================================================================")
+
+        OUTPUT(" #1 - Your phone is quite slow to open apps.")
+
+        OUTPUT(" #2 - Your phone is experiencing bad battery life.")
+
+        OUTPUT(" #3 - Your phone is overheating rapidly.")
+
+        OUTPUT(" #4 - Your phone cannot store anymore apps / photos.")
+
+        OUTPUT(" #5 - Your phone's apps freeze randomly and/or stop working completely.")
+
+        OUTPUT(" #6 - Your phone freezes (even on the home screen) or crashes.")
+
+        OUTPUT(" #7 - Your phone's app store is not downloading apps at all.")
+
+        OUTPUT(" #8 - Your phone's MicroSD card is not showing up / not storing anything.")
+
+        OUTPUT(" #9 - Your phone has gotten wet (in any degree).")
+
+        OUTPUT(" #a - Your phone has a damaged charging port.")
+
+        OUTPUT(" #b - Your phone's connected accounts cannot synchronise.")
+
+        OUTPUT(" #c - Your phone's screen is not bright enough.")
+
+        OUTPUT(" #d - Your phone cannot connect to the app store.")
+
+        OUTPUT(" #e - Your phone cannot connect to WiFi (intermittent or not showing up).")
+
+        OUTPUT("==========================================================================")
+
+        OUTPUT("Enter the number.")
+
+        SET num TO None
+
+        SET accept1 TO False
+
+        SET accept2 TO False
+
+        WHILE accept1 EQUALS False:
+
+            TRY:
+
+                OUTPUT("Using the above, press the number or letter you would'd like to resolve: ")
+
+                SET num TO readkey()
+
+                SET accept1 TO True
+
+            except ValueError:
+
+                OUTPUT("Invalid INPUT. Enter a number.")
+
+        SET num TO str(num)
+
+        IF num EQUALS "1":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone is slow to opening apps, try closing previous apps or uninstalling unused ones to help.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "2":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("To improve bad battery life, adjust screen brightness, disable unnecessary background processes,")
+
+            OUTPUT("and close unused apps. Consider replacing the battery IF the issue persists.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "3":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone is overheating rapidly, try closing resource-intensive apps, keeping it IN a cool environment,")
+
+            OUTPUT("and removing any phone cases that may be trapping heat. If the problem persists, consult the manufacturer or a technician.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "4":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("When your phone cannot store more apps/photos, delete unnecessary files, transfer media to ")
+
+            OUTPUT("external storage, and consider upgrading to a device with larger internal storage.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "5":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("Address random app freezes by updating apps and your phone's software,")
+
+            OUTPUT("clearing app caches, and restarting your device regularly.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "6":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "6":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("If your phone freezes or crashes, troubleshoot by uninstalling problematic apps, ")
+
+            OUTPUT("updating software, and performing a factory reset as a last resort.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "7":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("When the app store won't download apps, check your internet connection,") 
+
+            OUTPUT("clear app store cache, and ensure there's sufficient storage space.")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "9":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "8":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "9":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "a":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "b":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "c":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "d":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+        IF num EQUALS "e":
+
+            OUTPUT("=====================================================================================================")
+
+            OUTPUT("ez")
+
+            OUTPUT("=====================================================================================================")
+
+            WHILE accept2 EQUALS False:
+
+                TRY:
+
+                    OUTPUT("Did this help? Press 1 FOR yes (therefore exit) or 2 FOR no (want to continue resolving the issue.)")
+
+                    SET num1 TO int(readkey())
+
+                    SET accept2 TO True
+
+                except ValueError:
+
+                    OUTPUT("Invalid INPUT. Enter a number.")
+
+            SET num1 TO str(num1)
+
+            IF num1 EQUALS "1":
+
+                OUTPUT("Alright, thank you FOR using the program!")
+
+                exit()
+
+            IF num1 EQUALS "2":
+
+                OUTPUT("Taking back to main menu.")
+
+            ELSE:
+
+                OUTPUT("InvaLid response. Assuming you want to exit.")
+
+                exit()
+
+ELSE:
+
+    OUTPUT("No valid option has been selected. Assuming you would like to quit.")
+
+    quit()
+
+
+
+
+
+        
+
+        
+
+    
+
+
+
+
+
+
+
+
